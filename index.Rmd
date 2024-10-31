@@ -14,14 +14,85 @@ output:
 I am interested in exploring data related to potentially gerrymandering statistics, potentially picking one county in a swing state that has gone a bunch of different ways and trying to make some sense of that data. I know that some counties voted for Obama then Trump then Biden, so maybe something to do with voting statistics in those counties. Otherwise prison gerrymandering might also be interesting to look into. 
 
 
-#Final Project Milestone 2
+## Final Project Milestone 2
 
-I am curious to look at the relationship between unemployment rates on and around election day and presidential election results in pivot counties across the US. I will average the unemployment rates for the month prior to election day to account for early and absentee voting. For my dependent variable (democrat or republican victory) I will use the data set from ballotpedia, for my independent variable (unemployment rate), I will use the data set from the US Bureou of Labor Statistics. My tentative research question is: Using voting records from the 206 "Pivot Counties" do high rates of unemployment leading up to a presidential election disproportionately harm the republican or democratic party? I hypothesize that the economic indicator of high unemployment rates will disproportionately result in greater margins of republican victory, the higher the unemployment rate, the larger the republican margin of victory will be. My hypothesis is based on the polling that has shown Americans trust republicans more than democrats on handling of the economy (regardless or actual economic growth under a republican or democratic president) I think many voters particularity in these pivot counties who vote less reliably on party lines are influenced heavily by their perceptions of economic strength and unemployment is one of the simplest and most telling economic indicators. Both of my variables are quantitative so I won't have to measure them on a sliding scale or by grouping factors, just margins or republican or democratic victory by election year compared to unemployment rates in each of these pivot counties. The observed patter in this data that would support my hypothesis will be that in years with higher unemployment rates pivot counties across the united sates swing republican by greater margins. If pivot counties vary drastically in margins of republican victory regardless of unemployment rates this would disprove my hypothesis or if democrats perform better or the same with high unemployment rates. 
+I am curious to look at the relationship between unemployment rates on and around election day and presidential election results in pivot counties across the US. 
+
+I will average the unemployment rates for the month prior to election day to account for early and absentee voting. 
+
+For my dependent variable (democrat or republican victory) I will use the data set from ballotpedia, for my independent variable (unemployment rate), I will use the data set from the US Bureou of Labor Statistics. 
+
+My tentative research question is: Using voting records from the 206 "Pivot Counties" do high rates of unemployment leading up to a presidential election disproportionately harm the republican or democratic party? 
+
+I hypothesize that the economic indicator of high unemployment rates will disproportionately result in greater margins of republican victory, the higher the unemployment rate, the larger the republican margin of victory will be. My hypothesis is based on the polling that has shown Americans trust republicans more than democrats on handling of the economy (regardless or actual economic growth under a republican or democratic president) I think many voters particularity in these pivot counties who vote less reliably on party lines are influenced heavily by their perceptions of economic strength, unemployment is one of the simplest and most telling economic indicators. Both of my variables are quantitative so I won't have to measure them on a sliding scale or by grouping factors, just margins of republican or democratic victory by election year n each of these pivot counties compared to national unemployment rates. 
+
+The observed pattern in this data that would support my hypothesis will be that in years with higher unemployment rates pivot counties across the united sates swing republican by greater margins. If pivot counties vary drastically in margins of republican victory regardless of unemployment rates this would disprove my hypothesis or if democrats perform better or the same with high unemployment rates. 
 
 Resources:
 https://www.bls.gov/cps/
 https://ballotpedia.org/Election_results,_2020:_Pivot_Counties_in_the_2020_presidential_election
 https://www.nbcnews.com/news/amp/rcna117054
+
+
+## Final Project Milestone 3
+This milestone requires that your website loads the data you have selected and produces one interesting and polished data visualization. This could either show the distribution of one variable or the relationship between two variables.
+
+ -------------------- ----------------------------------------------------------
+ Name                 Description
+ -------------------- ----------------------------------------------------------
+`county_name`         Name of Pivot County 
+
+`election_year`       Presidential Election year, 2000 - 2024
+
+`percent_vote_dem`    Percentage of Pivot county that voted for the democratic
+                      candidate
+
+`percent_vote_rep`    Percentage of Pivot county that voted for the republican
+                      candidate 
+
+`winning_party`       Party that won the county, democratic victory (1), 
+                      republican (0)
+
+`margin_of_victory`   The margin of victory for the winning party in each county
+
+`nat_unemployment`    National unemployment rate as reported by the Buero of
+                      Labor Statistics in a given election year
+ ------------------------------------------------------------------------------
+
+basically I will need a graph tracking unemployment rates (line graph from 2000 - 2024?)
+
+a table showing county election results 
+county_name | election_year | percent_vote_dem | percent_vote_rep | winning_party | margin_of_victory | nat_unemployment
+
+and to load and join each data set 
+
+
+
+TO Do List 
+
+UNEMPLOYMENT
+- put labor stats into a table 
+- convert into csv file 
+
+once in R
+- clean data or exclude using the if else funciton? to just have data for 2008, 2012, 2016, 2020
+- line graph of unemployment data from thsie years?
+
+
+
+then Join data sets?
+
+
+Pivot Counties
+- actually fix my variable names 
+- load csv file 
+- make sure table looks good 
+- is the color thing going to be a problem?
+
+
+
+
+
 
 
 
