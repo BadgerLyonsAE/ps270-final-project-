@@ -7,7 +7,10 @@ output:
     self_contained: false
 ---
 
-
+```{r setup, include = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(error = TRUE)
+```
 
 ## Project thoughts (Milestone 1)
 
@@ -40,60 +43,89 @@ This milestone requires that your website loads the data you have selected and p
  -------------------- ----------------------------------------------------------
  Name                 Description
  -------------------- ----------------------------------------------------------
-`county_name`         Name of Pivot County 
+`County`              Name of Pivot County 
 
-`election_year`       Presidential Election year, 2000 - 2024
+`state`               State where county resides
 
-`percent_vote_dem`    Percentage of Pivot county that voted for the democratic
-                      candidate
+`status.2020`         labeled retained when counties kept their voting record,
+                      ie: Trump in 2016 and Trump in 2020 or Trump in 2016 and 
+                      Biden in 2020, counties that switched votes are labeled
+                      boomerang
 
-`percent_vote_rep`    Percentage of Pivot county that voted for the republican
-                      candidate 
+`MOV.2020`            The winning parties margin of victory in 2020
 
-`winning_party`       Party that won the county, democratic victory (1), 
-                      republican (0)
+`Trump.MOV.2016`      Republican Candidate Donald Trump's margin of victory in
+                      2016
 
-`margin_of_victory`   The margin of victory for the winning party in each county
+`Obama.MOV.2012`      Democratic presidential incumbent Obama's margin of 
+                      victory in 2012
 
-`nat_unemployment`    National unemployment rate as reported by the Buero of
-                      Labor Statistics in a given election year
+`Obama_MOV.2008`      Demoratic Canidate Obama's margin of vicotry in 2008
+
+
+(Need to muthate/ rename) nat_unemployment    National unemployment rate as reported by the Buearo of
+                    Labor Statistics in a given election year
  ------------------------------------------------------------------------------
+ 
+ 
+# loading csv.files
+```{r}
+library(tidyverse)
+library(broom)
+library(lubridate)
 
-basically I will need a graph tracking unemployment rates (line graph from 2000 - 2024?)
+nat_unemployment <- `National.Unemployment.04-24`
+nat_unemployment <- as_tibble(nat_unemployment)
 
-a table showing county election results 
-county_name | election_year | percent_vote_dem | percent_vote_rep | winning_party | margin_of_victory | nat_unemployment
+```
 
-and to load and join each data set 
+# simplifying data
+```{r}
+
+nat_unemployment <- nat_unemployment |>
+  mutate(Year = year(mdy(paste0("01 ", Month))))
+
+nat_unemployment |>
+select(Month,Total, Year)
+
+```
+# graph creation
+```{r}
+unemployment_rates <- 
+  ggplot(data = nat_unemployment,
+         mapping = aes(x = Year, y = Total)) + geom_smooth(se = FALSE) +
+  geom_point() + 
+   scale_x_continuous(breaks = c(2004, 2008, 2012, 2016, 2020, 2024)) +
+  labs(
+    title = "Average Unemployment Rate, Sept 2004-Sept 2024",
+    x = "Presidential Election Year",
+  y = "Total Unemployment Rate")
+
+unemployment_rates
+
+```
+
+
+# Pivot County Tibble
+```{r}
+pivot_counties
+
+boomerang <- as_tibble(pivot_counties) 
+boomerang
+```
 
 
 
-TO Do List 
-
-UNEMPLOYMENT
-- put labor stats into a table 
-- convert into csv file 
-
-once in R
-- clean data or exclude using the if else funciton? to just have data for 2008, 2012, 2016, 2020
-- line graph of unemployment data from thsie years?
-
-
+## Final Project Milestone 4/ future questions and ideas(I will make an office hour appointment)
 
 then Join data sets?
 
+- in the original published data for the pivot counties BallotPedia uses red and blue in the status column is there a way to add this or what would be the best alternative in r studio to show the same point?
 
-Pivot Counties
-- actually fix my variable names 
-- load csv file 
-- make sure table looks good 
-- is the color thing going to be a problem?
+- ideally for my unemployment data set I want to only have the total unemployment rate for 2004, 2008, 2012, 2016, 2020, and 2024 
+  - and then do I want to eventually average the months together in all of those years? 
 
-
-
-
-
-
+- for my graph, not exactly where I want it I would like to have the months still there and not on a vertical line this is kind of an interesting way of looking at the data but I don't think it is the best for my purposes, I just feel like I dont know enough in r studio to experiment or know hypothetically what the best graph would be.
 
 
 

@@ -1571,57 +1571,119 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">county_name`</td>
+<td style="text-align: left;">County`</td>
 <td style="text-align: left;">Name of Pivot County</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">election_year`</td>
-<td style="text-align: left;">Presidential Election year, 2000 - 2024</td>
+<td style="text-align: left;">state`</td>
+<td style="text-align: left;">State where county resides</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">percent_vote_dem`</td>
-<td style="text-align: left;">Percentage of Pivot county that voted for the democratic
-candidate</td>
+<td style="text-align: left;">status.2020`</td>
+<td style="text-align: left;">labeled retained when counties kept their voting record,
+ie: Trump in 2016 and Trump in 2020 or Trump in 2016 and
+Biden in 2020, counties that switched votes are labeled
+boomerang</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">percent_vote_rep`</td>
-<td style="text-align: left;">Percentage of Pivot county that voted for the republican
-candidate</td>
+<td style="text-align: left;">MOV.2020`</td>
+<td style="text-align: left;">The winning parties margin of victory in 2020</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">winning_party`</td>
-<td style="text-align: left;">Party that won the county, democratic victory (1),
-republican (0)</td>
+<td style="text-align: left;">Trump.MOV.2016`</td>
+<td style="text-align: left;">Republican Candidate Donald Trump’s margin of victory in
+2016</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">margin_of_victory`</td>
-<td style="text-align: left;">The margin of victory for the winning party in each county</td>
+<td style="text-align: left;">Obama.MOV.2012`</td>
+<td style="text-align: left;">Democratic presidential incumbent Obama’s margin of
+victory in 2012</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">nat_unemployment`</td>
-<td style="text-align: left;">National unemployment rate as reported by the Buero of
-Labor Statistics in a given election year</td>
+<td style="text-align: left;">Obama_MOV.2008`</td>
+<td style="text-align: left;">Demoratic Canidate Obama’s margin of vicotry in 2008</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Need to muthate/ rena
+La</td>
+<td style="text-align: left;">me) nat_unemployment National unemployment rate as reported by the Buearo of
+bor Statistics in a given election year</td>
 </tr>
 </tbody>
 </table>
-<p>basically I will need a graph tracking unemployment rates (line graph from 2000 - 2024?)</p>
-<p>a table showing county election results
-county_name | election_year | percent_vote_dem | percent_vote_rep | winning_party | margin_of_victory | nat_unemployment</p>
-<p>and to load and join each data set</p>
-<p>TO Do List</p>
-<p>UNEMPLOYMENT
-- put labor stats into a table
-- convert into csv file</p>
-<p>once in R
-- clean data or exclude using the if else funciton? to just have data for 2008, 2012, 2016, 2020
-- line graph of unemployment data from thsie years?</p>
+<h1 id="loading-csv.files">loading csv.files</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lubridate.tidyverse.org'>lubridate</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>nat_unemployment</span> <span class='op'>&lt;-</span> <span class='va'>`National.Unemployment.04-24`</span></span></code></pre>
+</div>
+<pre><code>Error: object &#39;National.Unemployment.04-24&#39; not found</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nat_unemployment</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>nat_unemployment</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>Error: object &#39;nat_unemployment&#39; not found</code></pre>
+</div>
+<h1 id="simplifying-data">simplifying data</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nat_unemployment</span> <span class='op'>&lt;-</span> <span class='va'>nat_unemployment</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Year <span class='op'>=</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>mdy</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"01 "</span>, <span class='va'>Month</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>Error: object &#39;nat_unemployment&#39; not found</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nat_unemployment</span> <span class='op'>|&gt;</span></span>
+<span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Month</span>,<span class='va'>Total</span>, <span class='va'>Year</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>Error: object &#39;nat_unemployment&#39; not found</code></pre>
+</div>
+<h1 id="graph-creation">graph creation</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>unemployment_rates</span> <span class='op'>&lt;-</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>nat_unemployment</span>,</span>
+<span>         mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Year</span>, y <span class='op'>=</span> <span class='va'>Total</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2004</span>, <span class='fl'>2008</span>, <span class='fl'>2012</span>, <span class='fl'>2016</span>, <span class='fl'>2020</span>, <span class='fl'>2024</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    title <span class='op'>=</span> <span class='st'>"Average Unemployment Rate, Sept 2004-Sept 2024"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Presidential Election Year"</span>,</span>
+<span>  y <span class='op'>=</span> <span class='st'>"Total Unemployment Rate"</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>Error: object &#39;nat_unemployment&#39; not found</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>unemployment_rates</span></span></code></pre>
+</div>
+<pre><code>Error: object &#39;unemployment_rates&#39; not found</code></pre>
+</div>
+<h1 id="pivot-county-tibble">Pivot County Tibble</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>pivot_counties</span></span></code></pre>
+</div>
+<pre><code>Error: object &#39;pivot_counties&#39; not found</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>boomerang</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>pivot_counties</span><span class='op'>)</span> </span></code></pre>
+</div>
+<pre><code>Error: object &#39;pivot_counties&#39; not found</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>boomerang</span></span></code></pre>
+</div>
+<pre><code>Error: object &#39;boomerang&#39; not found</code></pre>
+</div>
+<h2 id="final-project-milestone-4-future-questions-and-ideasi-will-make-an-office-hour-appointment">Final Project Milestone 4/ future questions and ideas(I will make an office hour appointment)</h2>
 <p>then Join data sets?</p>
-<p>Pivot Counties
-- actually fix my variable names
-- load csv file
-- make sure table looks good
-- is the color thing going to be a problem?</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<ul>
+<li><p>in the original published data for the pivot counties BallotPedia uses red and blue in the status column is there a way to add this or what would be the best alternative in r studio to show the same point?</p></li>
+<li><p>ideally for my unemployment data set I want to only have the total unemployment rate for 2004, 2008, 2012, 2016, 2020, and 2024</p>
+<ul>
+<li>and then do I want to eventually average the months together in all of those years?</li>
+</ul></li>
+<li><p>for my graph, not exactly where I want it I would like to have the months still there and not on a vertical line this is kind of an interesting way of looking at the data but I don’t think it is the best for my purposes, I just feel like I dont know enough in r studio to experiment or know hypothetically what the best graph would be.</p></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
