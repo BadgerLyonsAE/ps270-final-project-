@@ -67,16 +67,26 @@ This milestone requires that your website loads the data you have selected and p
                     Labor Statistics in a given election year
  ------------------------------------------------------------------------------
  
- 
 # loading csv.files
 ```{r}
 library(tidyverse)
 library(broom)
 library(lubridate)
 
-nat_unemployment <- `National.Unemployment.04-24`
-nat_unemployment <- as_tibble(nat_unemployment)
+county_results <- read_csv("county_resultes - Sheet1.csv")
+county_results
 
+nat_unemployment <- read_csv("National Unemployment Statistics sep 2004 - sept 2024 - Sheet1.csv")
+nat_unemployment
+
+
+```
+
+
+
+```{r}
+nat_unemployment <- as_tibble(nat_unemployment)
+nat_unemployment
 ```
 
 # simplifying data
@@ -108,10 +118,10 @@ unemployment_rates
 
 # Pivot County Tibble
 ```{r}
-pivot_counties
+county_results
 
-boomerang <- as_tibble(pivot_counties) 
-boomerang
+county_results <- as_tibble(county_results) 
+county_results
 ```
 
 
@@ -125,7 +135,7 @@ then Join data sets?
 - ideally for my unemployment data set I want to only have the total unemployment rate for 2004, 2008, 2012, 2016, 2020, and 2024 
   - and then do I want to eventually average the months together in all of those years? 
 
-- for my graph, not exactly where I want it I would like to have the months still there and not on a vertical line this is kind of an interesting way of looking at the data but I don't think it is the best for my purposes, I just feel like I dont know enough in r studio to experiment or know hypothetically what the best graph would be.
+- for my graph, not exactly where I want it I would like to have the months still there and not on a vertical line this is kind of an interesting way of looking at the data but I don't think it is the best for my purposes, I just feel like I don't know enough in r studio to experiment or know hypothetically what the best graph would be.
 
 
 

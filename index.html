@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["county_resultes - Sheet1.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","National Unemployment Statistics sep 2004 - sept 2024 - Sheet1.csv"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1618,26 +1618,92 @@ bor Statistics in a given election year</td>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lubridate.tidyverse.org'>lubridate</a></span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>nat_unemployment</span> <span class='op'>&lt;-</span> <span class='va'>`National.Unemployment.04-24`</span></span></code></pre>
+<span><span class='va'>county_results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"county_resultes - Sheet1.csv"</span><span class='op'>)</span></span>
+<span><span class='va'>county_results</span></span></code></pre>
 </div>
-<pre><code>Error: object &#39;National.Unemployment.04-24&#39; not found</code></pre>
+<pre><code># A tibble: 206 × 7
+   County            State   `Status 2020` `MOV 2020` `Trump MOV 2016`
+   &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;            &lt;dbl&gt;
+ 1 Woodruff County   Arkans… Retained           27.8              8.91
+ 2 Conejos County    Colora… Retained            7.55             3.56
+ 3 Huerfano County   Colora… Retained            2.88             6.61
+ 4 Las Animas County Colora… Retained            9.89            15.6 
+ 5 Pueblo County     Colora… Boomerang           1.72             0.5 
+ 6 Windham County    Connec… Retained            4.27             7.78
+ 7 Kent County       Delawa… Boomerang           4.07             4.87
+ 8 Jefferson County  Florida Retained            6.87             5.06
+ 9 Monroe County     Florida Retained            7.92             6.82
+10 Pinellas County   Florida Boomerang           0.22             1.11
+# ℹ 196 more rows
+# ℹ 2 more variables: `Obama MOV 2012` &lt;dbl&gt;, `Obama MOV 2008` &lt;dbl&gt;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nat_unemployment</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>nat_unemployment</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nat_unemployment</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"National Unemployment Statistics sep 2004 - sept 2024 - Sheet1.csv"</span><span class='op'>)</span></span>
+<span><span class='va'>nat_unemployment</span></span></code></pre>
 </div>
-<pre><code>Error: object &#39;nat_unemployment&#39; not found</code></pre>
+<pre><code># A tibble: 241 × 10
+   Month     Total `Men, 20 years and over` `Women, 20 years and over`
+   &lt;chr&gt;     &lt;dbl&gt;                    &lt;dbl&gt;                      &lt;dbl&gt;
+ 1 Sept 2004   5.4                      5                          4.6
+ 2 Oct 2004    5.5                      4.9                        4.7
+ 3 Nov 2004    5.4                      4.9                        4.7
+ 4 Dec 2004    5.4                      4.8                        4.6
+ 5 Jan 2005    5.3                      4.7                        4.7
+ 6 Feb 2005    5.4                      4.8                        4.7
+ 7 Mar 2005    5.2                      4.6                        4.6
+ 8 Apr 2005    5.2                      4.4                        4.6
+ 9 May 2005    5.1                      4.3                        4.7
+10 June 2005   5                        4.3                        4.6
+# ℹ 231 more rows
+# ℹ 6 more variables: `16 to 19 years old` &lt;dbl&gt;, White &lt;dbl&gt;,
+#   `Black or African American` &lt;dbl&gt;, Asian &lt;dbl&gt;,
+#   `Hispanic or Latino` &lt;dbl&gt;, ...10 &lt;lgl&gt;</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nat_unemployment</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>nat_unemployment</span><span class='op'>)</span></span>
+<span><span class='va'>nat_unemployment</span></span></code></pre>
+</div>
+<pre><code># A tibble: 241 × 10
+   Month     Total `Men, 20 years and over` `Women, 20 years and over`
+   &lt;chr&gt;     &lt;dbl&gt;                    &lt;dbl&gt;                      &lt;dbl&gt;
+ 1 Sept 2004   5.4                      5                          4.6
+ 2 Oct 2004    5.5                      4.9                        4.7
+ 3 Nov 2004    5.4                      4.9                        4.7
+ 4 Dec 2004    5.4                      4.8                        4.6
+ 5 Jan 2005    5.3                      4.7                        4.7
+ 6 Feb 2005    5.4                      4.8                        4.7
+ 7 Mar 2005    5.2                      4.6                        4.6
+ 8 Apr 2005    5.2                      4.4                        4.6
+ 9 May 2005    5.1                      4.3                        4.7
+10 June 2005   5                        4.3                        4.6
+# ℹ 231 more rows
+# ℹ 6 more variables: `16 to 19 years old` &lt;dbl&gt;, White &lt;dbl&gt;,
+#   `Black or African American` &lt;dbl&gt;, Asian &lt;dbl&gt;,
+#   `Hispanic or Latino` &lt;dbl&gt;, ...10 &lt;lgl&gt;</code></pre>
 </div>
 <h1 id="simplifying-data">simplifying data</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nat_unemployment</span> <span class='op'>&lt;-</span> <span class='va'>nat_unemployment</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Year <span class='op'>=</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>mdy</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"01 "</span>, <span class='va'>Month</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code>Error: object &#39;nat_unemployment&#39; not found</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nat_unemployment</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Year <span class='op'>=</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>mdy</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"01 "</span>, <span class='va'>Month</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>nat_unemployment</span> <span class='op'>|&gt;</span></span>
 <span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Month</span>,<span class='va'>Total</span>, <span class='va'>Year</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>Error: object &#39;nat_unemployment&#39; not found</code></pre>
+<pre><code># A tibble: 241 × 3
+   Month     Total  Year
+   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
+ 1 Sept 2004   5.4  2004
+ 2 Oct 2004    5.5  2004
+ 3 Nov 2004    5.4  2004
+ 4 Dec 2004    5.4  2004
+ 5 Jan 2005    5.3  2005
+ 6 Feb 2005    5.4  2005
+ 7 Mar 2005    5.2  2005
+ 8 Apr 2005    5.2  2005
+ 9 May 2005    5.1  2005
+10 June 2005   5    2005
+# ℹ 231 more rows</code></pre>
 </div>
 <h1 id="graph-creation">graph creation</h1>
 <div class="layout-chunk" data-layout="l-body">
@@ -1650,28 +1716,51 @@ bor Statistics in a given election year</td>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
 <span>    title <span class='op'>=</span> <span class='st'>"Average Unemployment Rate, Sept 2004-Sept 2024"</span>,</span>
 <span>    x <span class='op'>=</span> <span class='st'>"Presidential Election Year"</span>,</span>
-<span>  y <span class='op'>=</span> <span class='st'>"Total Unemployment Rate"</span><span class='op'>)</span></span></code></pre>
+<span>  y <span class='op'>=</span> <span class='st'>"Total Unemployment Rate"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>unemployment_rates</span></span></code></pre>
 </div>
-<pre><code>Error: object &#39;nat_unemployment&#39; not found</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>unemployment_rates</span></span></code></pre>
-</div>
-<pre><code>Error: object &#39;unemployment_rates&#39; not found</code></pre>
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
 <h1 id="pivot-county-tibble">Pivot County Tibble</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>pivot_counties</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>county_results</span></span></code></pre>
 </div>
-<pre><code>Error: object &#39;pivot_counties&#39; not found</code></pre>
+<pre><code># A tibble: 206 × 7
+   County            State   `Status 2020` `MOV 2020` `Trump MOV 2016`
+   &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;            &lt;dbl&gt;
+ 1 Woodruff County   Arkans… Retained           27.8              8.91
+ 2 Conejos County    Colora… Retained            7.55             3.56
+ 3 Huerfano County   Colora… Retained            2.88             6.61
+ 4 Las Animas County Colora… Retained            9.89            15.6 
+ 5 Pueblo County     Colora… Boomerang           1.72             0.5 
+ 6 Windham County    Connec… Retained            4.27             7.78
+ 7 Kent County       Delawa… Boomerang           4.07             4.87
+ 8 Jefferson County  Florida Retained            6.87             5.06
+ 9 Monroe County     Florida Retained            7.92             6.82
+10 Pinellas County   Florida Boomerang           0.22             1.11
+# ℹ 196 more rows
+# ℹ 2 more variables: `Obama MOV 2012` &lt;dbl&gt;, `Obama MOV 2008` &lt;dbl&gt;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>boomerang</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>pivot_counties</span><span class='op'>)</span> </span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>county_results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>county_results</span><span class='op'>)</span> </span>
+<span><span class='va'>county_results</span></span></code></pre>
 </div>
-<pre><code>Error: object &#39;pivot_counties&#39; not found</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>boomerang</span></span></code></pre>
-</div>
-<pre><code>Error: object &#39;boomerang&#39; not found</code></pre>
+<pre><code># A tibble: 206 × 7
+   County            State   `Status 2020` `MOV 2020` `Trump MOV 2016`
+   &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;            &lt;dbl&gt;
+ 1 Woodruff County   Arkans… Retained           27.8              8.91
+ 2 Conejos County    Colora… Retained            7.55             3.56
+ 3 Huerfano County   Colora… Retained            2.88             6.61
+ 4 Las Animas County Colora… Retained            9.89            15.6 
+ 5 Pueblo County     Colora… Boomerang           1.72             0.5 
+ 6 Windham County    Connec… Retained            4.27             7.78
+ 7 Kent County       Delawa… Boomerang           4.07             4.87
+ 8 Jefferson County  Florida Retained            6.87             5.06
+ 9 Monroe County     Florida Retained            7.92             6.82
+10 Pinellas County   Florida Boomerang           0.22             1.11
+# ℹ 196 more rows
+# ℹ 2 more variables: `Obama MOV 2012` &lt;dbl&gt;, `Obama MOV 2008` &lt;dbl&gt;</code></pre>
 </div>
 <h2 id="final-project-milestone-4-future-questions-and-ideasi-will-make-an-office-hour-appointment">Final Project Milestone 4/ future questions and ideas(I will make an office hour appointment)</h2>
 <p>then Join data sets?</p>
@@ -1681,9 +1770,9 @@ bor Statistics in a given election year</td>
 <ul>
 <li>and then do I want to eventually average the months together in all of those years?</li>
 </ul></li>
-<li><p>for my graph, not exactly where I want it I would like to have the months still there and not on a vertical line this is kind of an interesting way of looking at the data but I don’t think it is the best for my purposes, I just feel like I dont know enough in r studio to experiment or know hypothetically what the best graph would be.</p></li>
+<li><p>for my graph, not exactly where I want it I would like to have the months still there and not on a vertical line this is kind of an interesting way of looking at the data but I don’t think it is the best for my purposes, I just feel like I don’t know enough in r studio to experiment or know hypothetically what the best graph would be.</p></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
