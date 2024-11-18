@@ -1765,7 +1765,6 @@ Labor Statistics in a given election year</td>
 <p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <h2 id="milestone-4">Milestone 4</h2>
-<p>Your article should contain one visualization and one analysis that attempts to answer your research question. There does not need to be a long discussion, but the results should be presented in either a second visualization or a nicely formatted table.</p>
 <h1 id="graph-creation-1">Graph creation</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1810,7 +1809,11 @@ Labor Statistics in a given election year</td>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-6-2.png" width="624" /></p>
 </div>
+<p>This is a tough relationship to analyze because there are a lot of economic factors other that influence unemployment rate and presidential approval, for example Obama was elected in 2008 in part because he offered solutions to the 2008 economic recession and housing crisis which had resulted in higher unemployment rates. Obama was reelected in 2012 despite higher unemployment rates than when he entered office this would seem to go against my hypothesis, that republicans are more likely to be elected when there are low unemployment rates because voters associate that with a bad economy and traditionally trust republicans more with the economy. In 2016 where unemployment rates were significantly lower nearly 5% less than when Obama took office in 2012, Trump was elected by much stronger MOV’s than Obama in 2012 (although slightly less than in 2008). This again seems to disprove my hypothesis as the low unemployment rates seemed to benefit the republican candidate (Trump). However rather than proving the opposite of my hypothesis comparing these two graphs seems to support a different hypothesis that there may not be a strong relationship between unemployment rates and party victory. The unemployment data for 2020 is clearly skewed as a result of Covid resulting in a huge spike in 2020 Trump oversaw this spike while in office and was superseded by Biden. Maybe a similarity can be drawn between a large spike in uneployment, 2008, and 2020, and the coutnry turning to a Democratic Canidate.</p>
+<h1 id="analysis">Analysis:</h1>
 <h2 id="questions-for-office-hours">Questions for office hours</h2>
+<ul>
+<li>I don’t know where the code for labeling the x axis line is cominf from so i was not able to change it, somehow I need to make it so the collums are only for each year not showing the MOV for all three candiates for the same year every collum (obviosly no data for obama MOV in 2020, etc)
 <ul>
 <li><p>I don’t know if I want all of the extra data for unemployment rates, I could not figure out how to get rid of it and simplify it to just month, year, and total rate</p></li>
 <li><p>along those lines how would I go about separating month and year so they are in a separate column, and do I even want to dot that, or deally for my unemployment data set I want to only have the total unemployment rate for 2004, 2008, 2012, 2016, 2020, and 2024, and then do I want to eventually average the months together in all of those years?</p></li>
@@ -1818,69 +1821,9 @@ Labor Statistics in a given election year</td>
 <li>in the original published data for the pivot counties BallotPedia uses red and blue in the status column is there a way to add this or what would be the best alternative in r studio to show the same point?</li>
 </ul></li>
 <li><p>I have given up on my attempts to join the data sets because I could not figure out how to it because they do not share any column names and have a different number of columns</p></li>
+</ul></li>
 </ul>
-<h1 id="extranious-graphs-i-tried-to-make-work-and-eventually-decided-they-were-not-going-to-be-usefull-in-comparing-pivot-counties-to-unemployment">Extranious graphs I tried to make work and eventually decided they were not going to be usefull in comparing pivot counties to unemployment</h1>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>county_results_long</span> <span class='op'>&lt;-</span> <span class='va'>county_results</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span><span class='op'>(</span>key <span class='op'>=</span> <span class='st'>"Election_year"</span>, value <span class='op'>=</span> <span class='st'>"MOV"</span>,</span>
-<span>         <span class='va'>`Obama MOV 2008`</span>, <span class='va'>`Obama MOV 2012`</span>, <span class='va'>`Trump MOV 2016`</span>, <span class='va'>`MOV 2020`</span> <span class='op'>)</span></span>
-<span></span>
-<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>county_results_long</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Election_year</span>, y <span class='op'>=</span> <span class='va'>County</span>, fill <span class='op'>=</span> <span class='va'>MOV</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>geom_tile</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradient2</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Margin of Victory (%)"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Margin of Victory Heatmap by County and Election Year"</span>,</span>
-<span>       x <span class='op'>=</span> <span class='st'>"Election Year"</span>, y <span class='op'>=</span> <span class='st'>"County"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="index_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>county_results_long</span> <span class='op'>&lt;-</span> <span class='va'>county_results</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span><span class='op'>(</span>key <span class='op'>=</span> <span class='st'>"Election_Year"</span>, value <span class='op'>=</span> <span class='st'>"MOV"</span>, </span>
-<span>         <span class='va'>`Obama MOV 2008`</span>, <span class='va'>`Obama MOV 2012`</span>, <span class='va'>`Trump MOV 2016`</span>, <span class='va'>`MOV 2020`</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>county_results_long</span> <span class='op'>&lt;-</span> <span class='va'>county_results_long</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Candidate <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
-<span>    <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>Election_Year</span>, <span class='st'>"Obama"</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"Obama"</span>,</span>
-<span>    <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>Election_Year</span>, <span class='st'>"Trump"</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"Trump"</span>,</span>
-<span>    <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='st'>"Other"</span></span>
-<span>  <span class='op'>)</span><span class='op'>)</span></span>
-<span><span class='va'>county_results_long</span></span></code></pre>
-</div>
-<pre><code># A tibble: 824 × 6
-   County            State `Status 2020` Election_Year   MOV Candidate
-   &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;         &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;    
- 1 Woodruff County   Arka… Retained      Obama MOV 20…  7.46 Obama    
- 2 Conejos County    Colo… Retained      Obama MOV 20… 12.9  Obama    
- 3 Huerfano County   Colo… Retained      Obama MOV 20… 11.2  Obama    
- 4 Las Animas County Colo… Retained      Obama MOV 20…  7.04 Obama    
- 5 Pueblo County     Colo… Boomerang     Obama MOV 20… 15.0  Obama    
- 6 Windham County    Conn… Retained      Obama MOV 20… 14.7  Obama    
- 7 Kent County       Dela… Boomerang     Obama MOV 20…  9.81 Obama    
- 8 Jefferson County  Flor… Retained      Obama MOV 20…  3.66 Obama    
- 9 Monroe County     Flor… Retained      Obama MOV 20…  4.9  Obama    
-10 Pinellas County   Flor… Boomerang     Obama MOV 20…  8.25 Obama    
-# ℹ 814 more rows</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>county_results_long</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Election_Year</span>, y <span class='op'>=</span> <span class='va'>County</span>, fill <span class='op'>=</span> <span class='va'>MOV</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>geom_tile</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradient2</a></span><span class='op'>(</span>low <span class='op'>=</span> <span class='st'>"blue"</span>, high <span class='op'>=</span> <span class='st'>"red"</span>, mid <span class='op'>=</span> <span class='st'>"white"</span>, midpoint <span class='op'>=</span> <span class='fl'>0</span>, name <span class='op'>=</span> <span class='st'>"Margin of Victory (%)"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Margin of Victory Heatmap by County and Candidate"</span>,</span>
-<span>       x <span class='op'>=</span> <span class='st'>"Election Year"</span>, y <span class='op'>=</span> <span class='st'>"County"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>Candidate</span>, scales <span class='op'>=</span> <span class='st'>"free_y"</span><span class='op'>)</span> <span class='op'>+</span>  <span class='co'># Facet by Candidate</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>45</span>, hjust <span class='op'>=</span> <span class='fl'>1</span>, size <span class='op'>=</span> <span class='fl'>8</span><span class='op'>)</span>,  <span class='co'># Rotate x-axis text for readability</span></span>
-<span>        axis.text.y <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>,  <span class='co'># Adjust y-axis text size for readability</span></span>
-<span>        plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>14</span><span class='op'>)</span>,  <span class='co'># Increase title size</span></span>
-<span>        plot.margin <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>margin</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>10</span>, <span class='fl'>10</span>, <span class='fl'>10</span><span class='op'>)</span>,  <span class='co'># Add margin around plot</span></span>
-<span>        legend.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>,</span>
-<span>        legend.text <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="index_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
-</div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
