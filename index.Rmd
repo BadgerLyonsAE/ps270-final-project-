@@ -60,11 +60,11 @@ This milestone requires that your website loads the data you have selected and p
 `Obama.MOV.2012`      Democratic presidential incumbent Obama's margin of 
                       victory in 2012
 
-`Obama_MOV.2008`      Demoratic Canidate Obama's margin of vicotry in 2008
+`Obama_MOV.2008`      Democratic Candidate Obama's margin of victory in 2008
 
 
-(Need to muthate/ rename) nat_unemployment    National unemployment rate as reported by the Buearo of
-                    Labor Statistics in a given election year
+`total`               Total National unemployment rate as reported by the Buero of
+                      Labor Statistics in a given election year
  ------------------------------------------------------------------------------
  
 # loading csv.files
@@ -72,6 +72,7 @@ This milestone requires that your website loads the data you have selected and p
 library(tidyverse)
 library(broom)
 library(lubridate)
+library(ggplot2)
 
 county_results <- read_csv("county_resultes - Sheet1.csv")
 county_results
@@ -94,12 +95,17 @@ nat_unemployment
 
 nat_unemployment <- nat_unemployment |>
   mutate(Year = year(mdy(paste0("01 ", Month))))
-
-nat_unemployment |>
-select(Month,Total, Year)
-
+nat_unemployment
 ```
-# graph creation
+# Pivot County Tibble
+```{r}
+county_results
+
+county_results <- as_tibble(county_results) 
+county_results
+```
+
+# Graph Creation
 ```{r}
 unemployment_rates <- 
   ggplot(data = nat_unemployment,
@@ -109,33 +115,68 @@ unemployment_rates <-
   labs(
     title = "Average Unemployment Rate, Sept 2004-Sept 2024",
     x = "Presidential Election Year",
-  y = "Total Unemployment Rate")
+  y = "Total Unemployment Rate") +
+  theme_minimal()
+
+unemployment_rates
+```
+
+
+
+## Milestone 4
+
+Your article should contain one visualization and one analysis that attempts to answer your research question. There does not need to be a long discussion, but the results should be presented in either a second visualization or a nicely formatted table.
+
+# Graph creation 
+```{r}
+
+unemployment_rates <- 
+  ggplot(data = nat_unemployment,
+         mapping = aes(x = Year, y = Total)) + geom_smooth(se = FALSE) +
+  geom_point() + 
+   scale_x_continuous(breaks = c(2004, 2008, 2012, 2016, 2020, 2024)) +
+  labs(
+    title = "Average Unemployment Rate, Sept 2004-Sept 2024",
+    x = "Presidential Election Year",
+  y = "Total Unemployment Rate", caption = "Data Source: U.S Bureau of Labor Statistics") +
+  theme_minimal()
 
 unemployment_rates
 
+
+set.seed(123) # is this necessary I know we did this in section and a problem set so it is reproducible but IDK
+Pivot_Sample <- county_results |>
+  sample_n(30)  
+
+
+county_results_long <- Pivot_Sample |>
+  gather(key = "Election_year", value = "MOV", 
+         `Obama MOV 2008`, `Obama MOV 2012`, `Trump MOV 2016`, `MOV 2020`)
+
+Pivot_Sample <- county_results_long |>
+  mutate(Candidate = case_when(
+    str_detect(Election_year, "Obama") ~ "Obama",
+    str_detect(Election_year, "Trump") ~ "Trump",
+    TRUE ~ "Biden"
+  ))
+
+  ggplot(Pivot_Sample, aes(x = Election_year, y = County, fill = MOV)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "white", high = "hotpink", mid = "pink", midpoint = 11, name = "Percent MOV ") +
+  labs(title = "30 Randomly Sampled Pivot Counties: MOV Heatmap by Candidate",
+       x = "Election Year", y = "County", caption = "Data Source: BALLOTPEDIA") + 
+  facet_wrap(~ Candidate) + 
+  theme_minimal()
+
 ```
 
-
-# Pivot County Tibble
-```{r}
-county_results
-
-county_results <- as_tibble(county_results) 
-county_results
-```
-
-
-
-## Final Project Milestone 4/ future questions and ideas(I will make an office hour appointment)
-
-then Join data sets?
-
-- in the original published data for the pivot counties BallotPedia uses red and blue in the status column is there a way to add this or what would be the best alternative in r studio to show the same point?
-
-- ideally for my unemployment data set I want to only have the total unemployment rate for 2004, 2008, 2012, 2016, 2020, and 2024 
-  - and then do I want to eventually average the months together in all of those years? 
-
-- for my graph, not exactly where I want it I would like to have the months still there and not on a vertical line this is kind of an interesting way of looking at the data but I don't think it is the best for my purposes, I just feel like I don't know enough in r studio to experiment or know hypothetically what the best graph would be.
-
-
-
+## Questions for office hours 
+- I don't know where the code for labeling the x axis line is cominf from so i was not able to change it, somehow I need to make it so the collums are only for each year not showing the MOV for all three candiates for the same year every collum (obviosly no data for obama MOV in 2020, etc)
+  - I don't know if I want all of the extra data for unemployment rates, I could not figure out how to get rid of it and simplify it to just month, year, and total rate 
+  
+  - along those lines how would I go about separating month and year so they are in a separate column, and do I even want to dot that, or deally for my unemployment data set I want to only have the total unemployment rate for 2004, 2008, 2012, 2016, 2020, and 2024, and then do I want to eventually average the months together in all of those years? 
+  
+  - - in the original published data for the pivot counties BallotPedia uses red and blue in the status column is there a way to add this or what would be the best alternative in r studio to show the same point?
+  
+  - I have given up on my attempts to join the data sets because I could not figure out how to it because they do not share any column names and have a different number of columns 
+  
