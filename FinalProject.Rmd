@@ -1,0 +1,100 @@
+---
+title: "Final Project"
+author: "Arwen Lyons"
+date: "2024-12-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+(Visualizations should have informative labels andnames and have a small number of digits presented, using kable or modelssummary to nicley format)
+
+extra point for:
+- merging two different data sets
+- additional analysis for possible confounders or alternative explinations (that poor economics mostly harm the incombent party)
+## Introduction 
+
+Research Question:
+- hypothesis
+- why this is interesting
+
+## Data Section 
+- breifly describes data source, 
+- how key dependent and independent variables are measured
+    - (eg survey, statistical model, or expert coding) 
+- is this a cross sectional or differences in differences 
+    
+# Plot that summarizes the dependent variable 
+  - so this is going to be my plot of unemployment rates for election years
+  
+  
+## Results Section
+  - this is going to have my four graphs of the elections results and maybe my oink graph if I can fix it
+  - output for the main regression of interest
+      - p value
+  - interpret the main coefficient of interest in uyour regression 
+  - comment the statistical significance of the estimated coefficient and whether or not you believe the coefficient to represent a causal effect 
+      
+## Conclusion 
+  - summarizes results 
+  - extent to which you find support for your hypotheis
+  - limitations in data/how data could be improved
+      - weak P value relationship, to properly do this experiment would need unployment data for all of these coutnies 
+  - confounding factors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
