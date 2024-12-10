@@ -83,8 +83,6 @@ nat_unemployment
 
 ```
 
-
-
 ```{r}
 nat_unemployment <- as_tibble(nat_unemployment)
 nat_unemployment
@@ -120,7 +118,6 @@ unemployment_rates <-
 
 unemployment_rates
 ```
-
 
 
 ## Milestone 4
@@ -167,13 +164,39 @@ Pivot_Sample <- county_results_long |>
   theme_minimal()
 
 ```
+```{r}
+Pivot_Sample |>
+  filter(Election_year=="Obama MOV 2008") |>
+  ggplot(aes(x = MOV)) + geom_histogram(binwidth = 2)
+
+Pivot_Sample |>
+  filter(Election_year=="Obama MOV 2012") |>
+  ggplot(aes(x = MOV)) + geom_histogram(binwidth = 2)
+
+Pivot_Sample |>
+  filter(Election_year=="Trump MOV 2016") |>
+  ggplot(aes(x = MOV)) + geom_histogram(binwidth = 2)
+
+Pivot_Sample |>
+  filter(Election_year== "MOV 2020") |>
+  ggplot(aes(x = MOV)) + geom_histogram(binwidth = 2)
+
+
+ggplot(data = Pivot_Sample, aes(x = MOV)) + geom_histogram(binwidth = 2) + facet_wrap(~Election_year)
+
+```
+
+
+```{r}
+mutate(Biden MOV 2020 = case_when(status == "boomerang" ~ MOV 2020, status == "retained" ~ -MOV 2020))
+```
 
 # Analysis:
-This is a tough relationship to analyze because there are a lot of economic factors other that influence unemployment rate and presidential approval, for example Obama was elected in 2008 in part because he offered solutions to the 2008 economic recession and housing crisis which had resulted in higher unemployment rates. Obama was reelected in 2012 despite higher unemployment rates than when he entered office this would seem to go against my hypothesis, that republicans are more likely to be elected when there are low unemployment rates because voters associate that with a bad economy and traditionally trust republicans more with the economy. In 2016 where unemployment rates were significantly lower nearly 5% less than when Obama took office in 2012, Trump was elected by much stronger MOV's than Obama in 2012 (although slightly less than in 2008). This again seems to disprove my hypothesis as the low unemployment rates seemed to benefit the republican candidate (Trump). However rather than proving the opposite of my hypothesis comparing these two graphs seems to support a different hypothesis that there may not be a strong relationship between unemployment rates and party victory. The unemployment data for 2020 is clearly skewed as a result of Covid resulting in a huge spike in 2020 Trump oversaw this spike while in office and was superseded by Biden. Maybe a similarity can be drawn between a large spike in unemployment, 2008, and 2020, and the coutnry turning to a Democratic Canidate. 
+This is a tough relationship to analyze because there are a lot of economic factors that influence unemployment rate and presidential approval, for example Obama was elected in 2008 in part because he offered solutions to the 2008 economic recession and housing crisis which had resulted in higher unemployment rates. Obama was reelected in 2012 despite higher unemployment rates than when he entered office this would seem to go against my hypothesis, that republicans are more likely to be elected when there are low unemployment rates because voters associate that with a bad economy and traditionally trust republicans more with the economy. In 2016 where unemployment rates were significantly lower nearly 5% less than when Obama took office in 2012, Trump was elected by much stronger MOV's than Obama in 2012 (although slightly less than in 2008). This again seems to disprove my hypothesis as the low unemployment rates seemed to benefit the republican candidate (Trump). However rather than proving the opposite of my hypothesis comparing these two graphs seems to support a different hypothesis that there may not be a strong relationship between unemployment rates and party victory. The unemployment data for 2020 is clearly skewed as a result of Covid resulting in a huge spike in 2020 Trump oversaw this spike while in office and was superseded by Biden. Maybe a similarity can be drawn between a large spike in unemployment, 2008, and 2020, and the country turning to a Democratic Candidate. 
 
 
 ## Questions for office hours 
-- I don't know where the code for labeling the x axis line is cominf from so i was not able to change it, somehow I need to make it so the collums are only for each year not showing the MOV for all three candiates for the same year every collum (obviosly no data for obama MOV in 2020, etc)
+- I don't know where the code for labeling the x axis line is coming from so i was not able to change it, somehow I need to make it so the collums are only for each year not showing the MOV for all three candiates for the same year every column (obviosly no data for obama MOV in 2020, etc)
   - I don't know if I want all of the extra data for unemployment rates, I could not figure out how to get rid of it and simplify it to just month, year, and total rate 
   
   - along those lines how would I go about separating month and year so they are in a separate column, and do I even want to dot that, or deally for my unemployment data set I want to only have the total unemployment rate for 2004, 2008, 2012, 2016, 2020, and 2024, and then do I want to eventually average the months together in all of those years? 
@@ -182,3 +205,20 @@ This is a tough relationship to analyze because there are a lot of economic fact
   
   - I have given up on my attempts to join the data sets because I could not figure out how to it because they do not share any column names and have a different number of columns 
   
+  
+## concluson 
+say my theory fgarbage but now I amthinking it is more important that it hurts the party in charge when there is high enemplouyement
+or change hypthothesis that, high un-employment affects the incumbent party, 
+
+
+- lecture notes back to observational studies
+  - before and after treatment control 
+  
+# making a linear regression model 
+```{r}
+
+```
+
+regressoin 
+  - lm(MOV ~ unemployment + status(boomerang or retained + status * unemployment ))
+  tells us what is the effect of unemployment on all of the margin of victories for all of these counties, if I get a small p value from the combined ones it means there is a difference in effects of unemplpuyment on return and boomerang counties 
