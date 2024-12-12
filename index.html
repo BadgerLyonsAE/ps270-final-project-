@@ -1543,59 +1543,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<table style="width:99%;">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 72%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Name</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">County`</td>
-<td style="text-align: left;">Name of Pivot County</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">state`</td>
-<td style="text-align: left;">State where county resides</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">status.2020`</td>
-<td style="text-align: left;">labeled retained when counties kept their voting record,
-ie: Trump in 2016 and Trump in 2020 or Trump in 2016 and
-Biden in 2020, counties that switched votes are labeled
-boomerang</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MOV.2020`</td>
-<td style="text-align: left;">The winning parties margin of victory in 2020</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Trump.MOV.2016`</td>
-<td style="text-align: left;">Republican Candidate Donald Trump’s margin of victory in
-2016</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Obama.MOV.2012`</td>
-<td style="text-align: left;">Democratic presidential incumbent Barack Obama’s margin
-of victory in 2012</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Obama_MOV.2008`</td>
-<td style="text-align: left;">Democratic Candidate Obama’s margin of victory in 2008</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Total`</td>
-<td style="text-align: left;">Total National unemployment rate as reported by the
-Beauro of Labor Statistics in a given election year</td>
-</tr>
-</tbody>
-</table>
-<h2 id="unemployment-rates">UNEMPLOYMENT RATES</h2>
+<h2 id="examining-the-effects-of-unemployment-rates-on-party-margins-of-vicotry-in-the-last-four-presidental-elections-across-the-206-pivot-counties">Examining the Effects of Unemployment Rates on Party Margins of Vicotry in the Last Four Presidental Elections Across the 206 “Pivot Counties”</h2>
+<h2 id="introduction">Introduction</h2>
+<p>Much of the news cycle surrounding the 2024 presidential election revolved around the state of the economy and high inflation. Immediately after Donald Trump’s victory in November of 2024 (the first popularly elected republican president in 20 years), many reporters and political scientists are citing median voters’ concerns about inflation and the economy as a reason for his victory. It is a recognized trend among political scientists that American voters typically trust the republican party more than Democrats on issues regarding the economy. A joint ABC News and Ipsos national poll conducted in November 2023 reinforces this theory.</p>
+<p>The Ipsos poll based on a nationally recognized probability sample of 949 adults aged 18 or older found that the Republican party was trusted more among Americans for handling issues on the economy, inflation, and crime, while Democrats held a trust advantage on issues dealing with gun violence, education, and healthcare. More specifically, 35% of Americans placed more trust in the republican party to deal with both inflation and general economic issues compared to only 21% of those polled favoring Democrats. This poll also revealed the economy as the number one voting issue for the majority of Americans.</p>
+<p>Based on this observed preference for Republican handling of economic issues, I look to the past four presidential election cycles to determine if poor economic performance reduces Democratic margins of victory or disproportionately harms democratic candidates, specifically using polling data from the 206 “Pivot Counties”. Pivot counties are counties that as defined by Ballotpedia voted for Barack Obama in both the 2008 and 2012 presidential elections and then for Donald Trump in 2016. I want to pay special attention to pivot county results in 2020, as 181 of these counties were “Retained” or again had a majority vote for Trump while 25 of these counties became “Boomerang” counties, voting for Joe Biden.</p>
+<p>My research question is: Using voting records from the 206 “Pivot Counties”, do high rates of unemployment leading up to a presidential election disproportionately harm the Republican or democratic party?</p>
+<p>I hypothesize that the economic indicator of high unemployment rates will disproportionately result in greater margins of republican victory, the higher the unemployment rate, the larger the Republican margin of victory will be. My hypothesis is based on the polling that has shown Americans trust Republicans more than Democrats on the handling of the economy (regardless of actual economic growth under a Republican or Democratic president). I think many voters particularly in these pivot counties who vote less reliably on party lines are influenced heavily by their perceptions of economic strength. Unemployment is one of the simplest and most telling economic indicators. Both of my variables are quantitative so I won’t have to measure them on a sliding scale or by grouping factors, just margins of republican or democratic victory by election year in each of these pivot counties compared to national unemployment rates.</p>
+<p>The observed pattern in this data will support my hypothesis if in years with higher unemployment rates pivot counties across the United States swing Republican by greater margins. If pivot counties vary drastically in margins of Republican victory regardless of unemployment rates this would disprove my hypothesis, if Democrats perform better in election years with high unemployment rates this will also disprove my hypothesis. This is an interesting question because if an observable and statistically significant pattern is found, this could influence future Democratic or republican campaign strategies as well as add to the historical context of election behavior shedding light on the 2024 presidential election results.</p>
+<h2 id="data-section">Data Section</h2>
+<p>In my analysis, I draw data from two separate sources. My unemployment data is sourced from the United States Bureau of Labor Statistics compiling national unemployment statistics from September 2004 - September 2024. I have sourced all Pivot county data from Ballotpedia for which Ballotpedia used raw data from the “Dave Leip of Atlas of U.S. Presidential Elections”</p>
+<p>In this experiment, the yearly average unemployment rates are the independent variable, and Democratic and Republican margins of victories in pivot counties are the dependent variable. The independent variable (average unemployment rate) is measured by a percentage of national unemployment, and the dependent variable for each election year is measured by each pivot county’s Margins of Victory for Obama in 2008, and 2012, Trump in 2016, and a negative value in 2020 for Bidens MOV in retained counties, and a positive MOV for counties Biden won in 2020 (Boomerang). Both the independent and dependent variables are measured in this experiment by national polling and unemployment survey data.</p>
+<p>This experiment follows a cross-sectional research design. Though the unemployment and election data is collected over 20 years, this experiment examines the relationship between levels of unemployment and Margins of Victory in pivot counties each election year. I pay specific attention to analyzing the relationship between unemployment rates and status as a boomerang or retained county in 2020. This experiment cannot be differences in differences designs because there are no specific treatment and control groups.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
@@ -1665,7 +1624,9 @@ Beauro of Labor Statistics in a given election year</td>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
-<h1 id="pivot-county-tibble">Pivot County Tibble</h1>
+<h1 id="yearly-average-unemployment-rates-from-sept-2004---sept-2024">Yearly Average Unemployment Rates from Sept 2004 - Sept 2024</h1>
+<p>This visualization of unemployment rates shows rising unemployment rates from 2008 to 2012, peaking in 2012. In 2016 unemployment rates had returned to nearly their levels in 2006. The COVID-19 pandemic in 2020 resulted in a skyrocket in unemployment rates, though as the graph shows these remained lower than the highest yearly averages of unemployment in 2009, 2010, and 2011. By 2022, unemployment had returned to low levels. Based only on unemployment data and knowledge about presidential victories in these election years, this does not seem to show a substantive relationship between high unemployment rates and Republican victory. Most notably President Barack Obama won reelection in 2012 following his first term which oversaw dramatic increases in unemployment, additionally, in 2016 when unemployment rates had dropped to 2005 levels, democrats did not win the white house. However, this graph alone is not enough to support or reject the hypothesis but it is an interesting visualization and observation that there is not an immediate correlation between high rates of unemployment and Republican victory.</p>
+<h2 id="results-section">Results Section</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
@@ -1733,7 +1694,6 @@ Beauro of Labor Statistics in a given election year</td>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
-<h2 id="linear-regression-and-p-value">Linear Regression and P value</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>county_results_long</span><span class='op'>$</span><span class='va'>Year</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>county_results_long</span><span class='op'>$</span><span class='va'>Year</span><span class='op'>)</span></span>
@@ -1787,7 +1747,18 @@ Residual standard error: 10.54 on 820 degrees of freedom
 Multiple R-squared:  0.3195,    Adjusted R-squared:  0.317 
 F-statistic: 128.3 on 3 and 820 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<h2 id="extras-just-showing-set-seed-skills-and-sample">extras, just showing set seed skills and sample</h2>
+<p>The first plot in my results section is a facet wrap of all 4 studied election years modeling the margin of victory in all 206 pivot counties for presidential victors. The blue counties are counties that in 2020 became boomerang counties voting for Biden. Despite higher rates of unemployment leading up to 2012, Obama sustained only slight decreases in general margins of victory across pivot counties in 2012. Interestingly in 2016, when the unemployment rate had dropped to an average of just below 5% President Trump experienced margins of victory comparable to Obama in 2008 and across nearly every county a higher margin of victory for Obama in 2012. These results in 2016 seem to go directly against my hypothesis that high rates of unemployment will favor republican victory as in 2012, and conversely that low rates of unemployment would favor Democratic candidates, rejected by Republican pivot county margin of victory in 2016. For retained counties in 2020, Trump achieved similar margins of victory to those in 2016 except for the 25 boomerang counties that changed their vote for President Biden, (it is worth noting that these counties had the smallest margins of victory for Trump in 2016).</p>
+<p>Generally, this graph does not seem to support my hypothesis in any substantive way. Looking at the results of my linear regression which analyzed how the Margins of Victories in counties depend on annual unemployment rates and the county status, (boomerang, or retained) in 2020, additionally revealing the differences in the effect of unemployment on MOV between boomerang and retained counties.Diving into the specific results from the linear regression, we can ignore the estimated intercept which tells us when unemployment is 0, margins of victories for all candidates across 2008, 20012, 2016, and 2020 would be almost 40%, this can be disregarded for two reasons. One, unemployment will never reach zero and this number/measurement does not take into consideration the difference in party affiliation. The estimate of -5.33 indicates that in retained counties, across all 4 presidential election years, for every 1% increase in unemployment, the MOV decreases by 5.33 percentage points regardless of incumbency status or party affiliation. For boomerang counties, a 1% increase in unemployment across all four presidential election years yields a very different effect. For Boomerang counties, a 1% increase in unemployment has resulted in an average 5.59% increase in MOV. While the ~5% decrease in margins of victory for retained counties does align with the idea that poor economic health and higher rates of unemployment are bad for incumbents, (individuals or parties), the boomerang county results directly refute this. This high variability between retained and boomerang countries suggests that further research is needed into other factors that may influence voters in boomerang countries.The extremely low P values for all of these results show that there is a statistically significant difference in the relationships between unemployment rates and their impact on boomerang and retained counties.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In summary, the results of this experiment showed that there is not a clear relationship between rates of high unemployment and disproportionate harm to democratic candidates. As both the visualization of MOV across the 106 pivot counties and the rates of unemployment indicate, high rates of unemployment cannot be the predominant factor in indicating party or individual incumbent success. As discussed in the data and results section, if my hypothesis had been correct, the margin of victory graphs would have shown a democratic loss in 2012, a Democratic win in 2016, and a republican win in 2020 due to a large spike in unemployment in 2020. The linear regression reveals that there is a strongly supported relationship between unemployment rates and voter behavior and a stark contrast in the difference in impact of unemployment rates in MOV in boomerang and retained counties but otherwise does not in any way support my hypothesis. I would say by and large the results of my experiment reject my main hypothesis that Democrats will be disproportionately harmed in presidential election years with high rates of unemployment. Going forward I am now considering a better hypothesis that high rates of unemployment while in office harm the incumbent no matter the party affiliation. This would be particularly interesting to study given the unprecedented victory of Donald Trump in 2024.</p>
+<p>An improvement to this experiment would be to have unemployment data from each pivot county individually rather than using a national yearly average against specific pivot county MOV election results. Another improvement to this experiment would be to bring in additional indicators of economic health like US GDP or consumer confidence levels. Due to these variable limitations, I believe that my P value relationship between the effect of unemployment rates on boomerang and retained counties is weak and does not produce the most helpful or insightful results into broad national trends of voter behavior regarding party affiliation and the economy. Additionally, there are a lot of economic factors that influence the unemployment rate and presidential approval. For example, Obama was elected in 2008 in part because he offered solutions to the 2008 economic recession and housing crisis which had resulted in higher unemployment rates. The unemployment data for 2020 is skewed as a result of Covid resulting in a huge spike in 2020 Trump oversaw this spike while in office and was superseded by Biden. Maybe a similarity can be drawn between a large spike in unemployment, in 2008, and 2020, and the country turning to a Democratic Candidate.</p>
+<p>A final weakness of this experiment is the numerous possibilities of confounders. Election behavior and voter motivations continue to be one of the hardest topics to study in political science. There are so many variables that can affect a voter’s vote every day leading up to an election, including election day. Isolating one factor and attempting to infer its overall impact on the electorate and election results with high levels of statistical significance is incredibly difficult. Specific confounders in this experiment deal mostly with the pivot counties; this data did not examine differences in pivot counties such as geographic regions, states, and rural/urban divide which might drastically affect unemployment rates within these counties or interest in economic factors as the most salient political issue.</p>
+<h2 id="resources">Resources</h2>
+<p>ABC News and Ipsos 2023. <a href="https://www.ipsos.com/en-us/one-year-election-day-republicans-perceived-better-handling-economy" class="uri">https://www.ipsos.com/en-us/one-year-election-day-republicans-perceived-better-handling-economy</a></p>
+<p>Ballotpedia 2020.
+<a href="https://ballotpedia.org/Election_results,_2020:_Pivot_Counties_in_the_2020_presidential_election" class="uri">https://ballotpedia.org/Election_results,_2020:_Pivot_Counties_in_the_2020_presidential_election</a></p>
+<p>Unites States Buerou of Labor Statistics 2024. <a href="https://www.bls.gov/cps/" class="uri">https://www.bls.gov/cps/</a></p>
+<h2 id="unpolished-extra-graph-and-attempts-at-random-sampling-of-pivot-counties">Unpolished Extra graph and attempts at random sampling of Pivot Counties</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
